@@ -8,9 +8,6 @@ class LibrarySystem:
         self.bookList = []
         self.userList = []
         self.loans = []
-        menu = Menu()
-        self.lpt = menu.menu_show()
-
     def addLibrarian(self, library):
         self.librarians.append(library)
 
