@@ -21,25 +21,27 @@ if __name__ == '__main__':
         password = input("Enter your password: ")
         if librarySystem.login(login, password):
                 print("Login successful")
-                print("1. Add books")
-                print("2. Delete books")
-                print("3. Issue books")
-                print("4. Receive Books")
-                print("5. Register User")
-                print("6. Generate Report")
-                print("7. Display Books")
-                select = int(input(""))
-                if select == 1:
-                    librarian.addBook()
-                if select == 2:
-                    id = int(input("Enter ID of book: "))
-                    librarian.removeBook(id)
-                if select == 5:
-                    librarian.registerUser()
-                if select == 6:
-                    librarian.generateReport()
-                if select == 7:
-                    librarian.showBooks()
+                while select != 0:
+                    print("1. Add books")
+                    print("2. Delete books")
+                    print("3. Issue books")
+                    print("4. Receive Books")
+                    print("5. Register User")
+                    print("6. Generate Report")
+                    print("7. Display Books")
+                    print("0. Exit")
+                    select = int(input(""))
+                    if select == 1:
+                        librarian.addBook()
+                    if select == 2:
+                        id = int(input("Enter ID of book: "))
+                        librarian.removeBook(id)
+                    if select == 5:
+                        librarian.registerUser()
+                    if select == 6:
+                        librarian.generateReport()
+                    if select == 7:
+                        librarian.showBooks()
 
 
 

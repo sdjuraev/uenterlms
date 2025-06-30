@@ -15,11 +15,7 @@ class Librarian:
     def addBook(self):
         title = input("Enter title: ")
         author = input("Enter author")
-        isbn = input("Enter ISBN: ")
-        genre = input("Enter category")
-        price = input("Enter price")
-        year = input("Enter year")
-        book = Book(111, title, author, isbn, genre, True, price, year)
+        book = Book(111, title, author, True)
         self.librarySystem.addBook(book)
 
     def removeBook(self, id):
