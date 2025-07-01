@@ -34,7 +34,31 @@ class LibrarySystem:
         print("Invalid username or password")
         return False
 
+    def loginUser(self, email, password):
+        for user in self.userList:
+            if user.email == email and user.password == password:
+                print("Logged in successfully")
+                return True
+        print("Invalid username or password")
+        return False
+
     def addLoan(self, userID, days):
         new_loan = Loan(self, userID, date.today(),date.today()+days, NULL)
         self.loans.append(new_loan)
         return new_loan
+
+    def search(self, title):
+        for book in self.bookList:
+            if book.title == title:
+                return book
+        return None
+    def search2(self, year):
+        for book in self.bookList:
+            if book.year == year:
+                return book
+        return None
+    def search3(self, id):
+        for book in self.bookList:
+            if book.id == id:
+                return book
+        return None
