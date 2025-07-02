@@ -62,9 +62,28 @@ if __name__ == '__main__':
                 select = int(input("Enter your choice: "))
                 if select == 1:
                     title = input("Enter Book Title")
-                    book =Book( librarySystem.search(title))
+                    book = librarySystem.search(title)
                     if book is not None:
                         print(book.title, book.author, book.status)
+                if select == 2:
+                    title = input("Enter Book Title You want to borrow")
+                    book = librarySystem.search(title)
+                    if book is not None:
+                        if book.status:
+                            days = int(input("How many days would you like to borrow?"))
+                            book.status = False
+                            today = date.today()
+                            dueDate = date.today()+ days
+                            borrowBooks = Loan(1,today,dueDate,None)
+                            librarySystem.addLoan(borrowBooks)
+
+                        else:
+                            print("You can't borrow this book")
+                if select == 3:
+                    title = input("Enter Book Title You want to Return")
+                    book = librarySystem.search(title)
+                    if book is not None:
+                        book.status = True
 
 
 
