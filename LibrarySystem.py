@@ -1,6 +1,6 @@
 from Loan import Loan
 from MainMenu import Menu
-from datetime import date
+from datetime import date, timedelta
 
 
 class LibrarySystem:
@@ -40,9 +40,9 @@ class LibrarySystem:
         for user in self.userList:
             if user.email == email and user.password == password:
                 print("Logged in successfully")
-                return True
+                return user
         print("Invalid username or password")
-        return False
+        return None
 
     def addLoan(self, new_loan):
         self.loans.append(new_loan)
@@ -67,4 +67,11 @@ class LibrarySystem:
 
     def printBorrowedBooks(self):
         for loan in self.loans:
-            print(loan.issueDate, loan.dueDate, loan.Book.title, loan.Book.author)
+            print(loan.issueDate, loan.dueDate, loan.Book.title, loan.Book.author + loan.User.email)
+    def returnBorrowedBooks(self, title, User):
+        book = self.search(title)
+        for loan in self.loans:
+            if loan.Book==book and loan.User == User and loan.dueDate < date.today():
+                print("You have fine")
+                timedelta =date.today() - loan.dueDate
+                print("You need to pay",timedelta * 10000 )

@@ -50,8 +50,8 @@ if __name__ == '__main__':
     if select==2:
         email = input("Enter email:")
         password = input("Enter password:")
-
-        if librarySystem.loginUser(email.strip(), password.strip()):
+        foundUser = librarySystem.loginUser(email.strip(), password.strip())
+        if foundUser is not None:
             print("Login successful")
             while select != 0:
                 print("1. Search Book")
@@ -73,9 +73,9 @@ if __name__ == '__main__':
                         if book.status:
                             day = int(input("How many days would you like to borrow?"))
                             book.status = False
-                            today = date.today()
-                            dueDate = date.today() + timedelta(days=day)
-                            borrowBooks = Loan(1, today, dueDate, None, book)
+                            today = date.today() - timedelta(days=10)
+                            dueDate = date.today() - timedelta(days=day)
+                            borrowBooks = Loan(1, today, dueDate, None, book, foundUser)
                             librarySystem.addLoan(borrowBooks)
                             librarySystem.printBorrowedBooks()
 
@@ -83,9 +83,9 @@ if __name__ == '__main__':
                             print("You can't borrow this book")
                 if select == 3:
                     title = input("Enter Book Title You want to Return")
-                    book = librarySystem.search(title)
-                    if book is not None:
-                        book.status = True
+                    librarySystem.returnBorrowedBooks(title, foundUser)
+
+
 
 
 
