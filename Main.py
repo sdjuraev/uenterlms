@@ -2,8 +2,9 @@ from Book import Book
 from Loan import Loan
 from  LibrarySystem import LibrarySystem
 from Librarian import Librarian
-from datetime import date
+from datetime import date, timedelta
 from User import  User
+
 
 if __name__ == '__main__':
     librarySystem = LibrarySystem()
@@ -70,12 +71,13 @@ if __name__ == '__main__':
                     book = librarySystem.search(title)
                     if book is not None:
                         if book.status:
-                            days = int(input("How many days would you like to borrow?"))
+                            day = int(input("How many days would you like to borrow?"))
                             book.status = False
                             today = date.today()
-                            dueDate = date.today()+ days
-                            borrowBooks = Loan(1,today,dueDate,None)
+                            dueDate = date.today() + timedelta(days=day)
+                            borrowBooks = Loan(1, today, dueDate, None, book)
                             librarySystem.addLoan(borrowBooks)
+                            librarySystem.printBorrowedBooks()
 
                         else:
                             print("You can't borrow this book")

@@ -1,6 +1,7 @@
 from Loan import Loan
 from MainMenu import Menu
-from datetime import  date
+from datetime import date
+
 
 class LibrarySystem:
     def __init__(self):
@@ -8,6 +9,7 @@ class LibrarySystem:
         self.bookList = []
         self.userList = []
         self.loans = []
+
     def addLibrarian(self, library):
         self.librarians.append(library)
 
@@ -42,23 +44,27 @@ class LibrarySystem:
         print("Invalid username or password")
         return False
 
-    def addLoan(self, userID, days):
-        new_loan = Loan(self, userID, date.today(),date.today()+days, NULL)
+    def addLoan(self, new_loan):
         self.loans.append(new_loan)
-        return new_loan
 
     def search(self, title):
         for book in self.bookList:
             if book.title == title:
                 return book
         return None
+
     def search2(self, year):
         for book in self.bookList:
             if book.year == year:
                 return book
         return None
+
     def search3(self, id):
         for book in self.bookList:
             if book.id == id:
                 return book
         return None
+
+    def printBorrowedBooks(self):
+        for loan in self.loans:
+            print(loan.issueDate, loan.dueDate, loan.Book.title, loan.Book.author)
